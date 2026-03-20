@@ -1,0 +1,40 @@
+# ================================
+# GitHub Actions：Xserver に子テーマを自動デプロイ
+# ================================
+
+name: Deploy Theme to Xserver  # ← このワークフローの名前（自由に決めてOK）
+
+on:
+  push:
+    branches:
+      - main  # main ブランチに push されたときだけ実行する
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # GitHub Actions が使う仮想マシンの OS（Xserver とは無関係）
+
+    steps:
+      # ----------------------------------------
+      # 1. GitHub リポジトリを Actions 環境に取得
+      #    ※ 今回の構成では必須ではないが、慣習的に入れておくと後で便利
+      # ----------------------------------------
+      - name: Checkout repository
+        uses: actions/checkout@v3  # GitHub 公式の「リポジトリを取得するアクション」
+
+      # ----------------------------------------
+      # 2. Xserver に SSH 接続して、サーバー側で git pull を実行
+      #    ※ 実際のデプロイ処理はここ
+      # ----------------------------------------
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3  # SSH 接続を行うアクション（世界的に定番）
+        with:
+          host: ${{ secrets.SSH_HOST }}        # Xserver のホスト名（例：mtskyblue.xsrv.jp）
+          username: ${{ secrets.SSH_USERNAME }} # サーバーID
+          key: ${{ secrets.SSH_PRIVATE_KEY }}   # GitHub 用秘密鍵
+          port: ${{ secrets.SSH_PORT }}         # Xserver の SSH ポート（10022）
+          script: |
+            # Xserver 側で子テーマのディレクトリに移動
+            cd /home/${{ secrets.SSH_USERNAME }}/she-let-me-try.blog/public_html/wp-content/themes/cocoon-child-master
+
+            # GitHub の main ブランチから最新を取得して反映
+            git pull origin main
