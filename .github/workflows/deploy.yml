@@ -34,10 +34,9 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}   # GitHub 用秘密鍵
           port: ${{ secrets.SSH_PORT }}         # Xserver の SSH ポート（10022）
           script: |
+            cd she-let-me-try.blog/
             echo "--- 現在の場所 (pwd) ---"
             pwd
-            echo "--- ホームディレクトリ (~ の中身) ---"
-            cd ~ && pwd
             echo "--- ディレクトリ一覧 (ls -F) ---"
             ls -F
 
