@@ -35,7 +35,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}         # Xserver の SSH ポート（10022）
           script: |
             # Xserver 側で子テーマのディレクトリに移動
-            cd /home/${{ secrets.SSH_USERNAME }}/she-let-me-try.blog/public_html/wp-content/themes/cocoon-child-master
+            cd ~/she-let-me-try.blog/public_html/wp-content/themes/cocoon-child-master
 
             # 1. ローカル（Xserver側）の未コミットの変更をすべて破棄（強制リセット）
             git fetch origin main
