@@ -14,14 +14,12 @@ Version:    1.1.3
 ** 子テーマ用のスタイルを書く
 ************************************/
 /*必要ならばここにコードを書く*/
-.red {
-  color: rgba(255, 0, 0, 0.7) !important; /* 70%の濃さの赤 */
+html :root {
+  --cocoon-red-color: #ff5722 !important;
 }
-.bold-red {
-  color: rgba(255, 0, 0, 0.7) !important; /* 70%の濃さの赤 */
-}
+
 .cocoon-custom-text-1{
-  color: rgba(128, 128, 128, 0.5) !important;
+  color: var(--cocoon-light-grey-color);
   font-weight: bold;
 }
 
