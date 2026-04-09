@@ -34,20 +34,10 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}   # GitHub 用秘密鍵
           port: ${{ secrets.SSH_PORT }}         # Xserver の SSH ポート（10022）
           script: |
-            # サーバー内から本物の cocoon-child-master フォルダ（style.cssがある場所）を探して移動
-            # ※ she-let-me-try.blog の階層に限定して探す
-            REAL_PATH=$(find /home/${{ secrets.SSH_USERNAME }}/she-let-me-try.blog -name "style.css" | grep "cocoon-child-master" | xargs dirname | head -n 1)
-
-            if [ -z "$REAL_PATH" ]; then
-              echo "Error: フォルダが見つかりません"
-              exit 1
-            fi
-
-            cd "$REAL_PATH"
-            echo "--- 実際にデプロイする場所 ---"
+            echo "--- 現在の場所 (pwd) ---" && \
+            pwd && \
+            echo "--- ディレクトリ一覧 (ls -F) ---" && \
+            ls -F && \
+            cd she-let-me-try.blog/public_html/wp-content/themes/cocoon-child-master && \
             pwd
-
-            # 強制同期
-            git fetch origin main
-            git reset --hard origin/main
 
