@@ -20,7 +20,15 @@ html :root {
 
 .cocoon-custom-text-1{
   color: var(--cocoon-light-grey-color);
+}
+
+.cocoon-custom-text-2{
+  color: var(--cocoon-light-grey-color);
   font-weight: bold;
+}
+
+.my-custom-design {
+  color: red;
 }
 
 /************************************
