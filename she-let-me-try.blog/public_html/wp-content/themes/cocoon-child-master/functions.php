@@ -20,7 +20,7 @@ add_action('init', function() {
   register_block_style(
       'core/paragraph',
       array(
-          'name'  => 'dasoku', // クラス名
+          'name'  => 'dasoku', // クラス名（is-style-[name]）
           'label' => '蛇足',   // エディター上の表示名
       )
   );

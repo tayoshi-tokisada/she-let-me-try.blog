@@ -27,7 +27,7 @@ html :root {
   font-weight: bold;
 }
 
-.dasoku{
+.is-style-dasoku{
   color: var(--cocoon-light-grey-color);
   font-weight: bold;
 }
